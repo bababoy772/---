@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дюков-Цемент - строительные материалы и строительные работы</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-orange: #f97316;
+            --secondary-orange: #fb923c;
+            --light-orange: #fed7aa;
+            --primary-black: #000000;
+            --secondary-black: #1f2937;
+            --light-black: #374151;
+            --white: #ffffff;
+            --light-gray: #f9fafb;
+            --dark-gray: #6b7280;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--primary-black);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка сайта */
+        header {
+            background: linear-gradient(to right, var(--primary-black), var(--light-black));
+            color: var(--white);
+            padding: 20px 0;
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--primary-orange);
+        }
+
+        .logo span {
+            color: var(--primary-orange);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 15px;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a:hover {
+            color: var(--light-orange);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        nav ul li a.active {
+            background-color: var(--primary-orange);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Основной контент */
+        main {
+            padding-top: 100px;
+        }
+
+        /* Секции страниц */
+        .page-section {
+            display: none;
+            min-height: calc(100vh - 100px);
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        /* Герой-секции */
+        .hero-section {
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 0;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+        }
+
+        .hero-section .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        /* Герой главной страницы */
+        .hero-main {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(31, 41, 55, 0.8)), url('https://avatars.mds.yandex.net/i?id=9190c97e04b4b93227db52d48aedb1292a9231e9-5130185-images-thumbs&n=13');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+        }
+
+        /* Герой стройматериалов */
+        .hero-materials {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(31, 41, 55, 0.8)), url('https://avatars.mds.yandex.net/i?id=83d6d57b8e057d9bb9ad0dccce18e37a_l-4642926-images-thumbs&n=13');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+        }
+
+        /* Герой строительных работ */
+        .hero-works {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(31, 41, 55, 0.8)), url('https://avatars.mds.yandex.net/i?id=bfa889339d43e5ae68cc8304efe6ca49_l-4958654-images-thumbs&n=13');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+        }
+
+        .hero-section h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-orange);
+            color: var(--white);
+            padding: 14px 32px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-orange);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-order {
+            background-color: #10b981;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .btn-order:hover {
+            background-color: #34d399;
+        }
+
+        .btn-discuss {
+            background-color: #10b981;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .btn-discuss:hover {
+            background-color: #34d399;
+        }
+
+        /* Общие стили для секций */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-black);
+            font-size: 32px;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-orange);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Секция преимуществ (Главная) */
+        .features {
+            padding: 60px 0;
+            background-color: var(--light-gray);
+            border-radius: var(--border-radius);
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card i {
+            font-size: 40px;
+            color: var(--primary-orange);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            color: var(--primary-black);
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        /* Секция о нас (Главная) */
+        .about {
+            padding: 60px 0;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            margin-bottom: 40px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            color: var(--primary-black);
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+        }
+
+        .about-image {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Секция товаров (Стройматериалы) */
+        .products-section {
+            padding: 60px 0;
+            background-color: var(--light-gray);
+            border-radius: var(--border-radius);
+            margin-bottom: 40px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e5e7eb;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-orange);
+        }
+
+        .product-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            border-bottom: 4px solid var(--light-orange);
+        }
+
+        .product-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary-black);
+        }
+
+        .product-description {
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-orange);
+            margin-bottom: 15px;
+        }
+
+        /* Секция работ (Строительные работы) */
+        .works-section {
+            padding: 60px 0;
+            background-color: var(--light-gray);
+            border-radius: var(--border-radius);
+            margin-bottom: 40px;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .work-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e5e7eb;
+        }
+
+        .work-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-orange);
+        }
+
+        .work-image {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+            border-bottom: 4px solid var(--light-orange);
+        }
+
+        .work-content {
+            padding: 25px;
+        }
+
+        .work-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary-black);
+        }
+
+        .work-description {
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .work-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .work-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+        }
+
+        .work-features li:last-child {
+            border-bottom: none;
+        }
+
+        .work-features i {
+            color: var(--primary-orange);
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        /* Секция процесса работы (Строительные работы) */
+        .process-section {
+            padding: 60px 0;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            margin-bottom: 40px;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--light-gray);
+            border-radius: var(--border-radius);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-orange);
+            color: var(--white);
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .process-step h3 {
+            color: var(--primary-black);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        /* Контактная информация (общая для всех) */
+        .contacts-section {
+            background-color: var(--light-gray);
+            padding: 60px 0;
+            border-radius: var(--border-radius);
+            margin-bottom: 40px;
+        }
+
+        .contacts-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border: 1px solid #e5e7eb;
+        }
+
+        .contact-info h3 {
+            color: var(--primary-black);
+            margin-bottom: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info h3 i {
+            margin-right: 10px;
+            color: var(--primary-orange);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .contact-item i {
+            color: var(--primary-orange);
+            font-size: 20px;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .contact-text h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--primary-black);
+        }
+
+        .contact-text p {
+            color: var(--dark-gray);
+        }
+
+        .map-placeholder {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid #e5e7eb;
+        }
+
+        .map-placeholder h3 {
+            color: var(--primary-black);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .map-placeholder p {
+            margin-bottom: 20px;
+        }
+
+        .map-image {
+            width: 100%;
+            height: 250px;
+            background-color: var(--light-gray);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-black);
+            font-weight: 600;
+        }
+
+        .map-image i {
+            font-size: 40px;
+            color: var(--primary-orange);
+            margin-right: 15px;
+        }
+
+        /* Подвал сайта */
+        footer {
+            background-color: var(--primary-black);
+            color: var(--white);
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--primary-orange);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary-orange);
+        }
+
+        .social-icons {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 15px;
+            color: var(--white);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary-orange);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: var(--light-gray);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .works-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 0;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 5px 10px;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+
+            .hero-section h1 {
+                font-size: 32px;
+            }
+
+            .hero-section p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .works-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            main {
+                padding-top: 140px;
+            }
+            
+            .hero-section {
+                min-height: 400px;
+                padding: 60px 0;
+            }
+
+            .hero-section h1 {
+                font-size: 26px;
+            }
+
+            .btn {
+                padding: 12px 24px;
+                font-size: 16px;
+                margin-bottom: 10px;
+                display: block;
+                width: 100%;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-tools"></i>
+                    <span>Дюков-Цемент</span>
+                </div>
+                
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link active" data-page="main"><i class="fas fa-home"></i> Главная</a></li>
+                        <li><a href="#" class="nav-link" data-page="materials"><i class="fas fa-shopping-cart"></i> Стройматериалы</a></li>
+                        <li><a href="#" class="nav-link" data-page="works"><i class="fas fa-hammer"></i> Строительные работы</a></li>
+                        <li><a href="#" class="nav-link" data-page="contacts"><i class="fas fa-address-book"></i> Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main>
+        <!-- Главная страница -->
+        <section class="page-section active" id="main-page">
+            <!-- Герой-секция -->
+            <section class="hero-section hero-main">
+                <div class="container">
+                    <h1>Качественные строительные материалы и строительные работы</h1>
+                    <p>Широкий ассортимент стройматериалов и профессиональное выполнение строительных работ любой сложности. Гарантия качества.</p>
+                    <a href="#" class="btn" data-page="materials">Стройматериалы</a>
+                    <a href="#" class="btn btn-secondary" data-page="works">Строительные работы</a>
+                </div>
+            </section>
+
+            <!-- Секция преимуществ -->
+            <section class="features">
+                <div class="container">
+                    <h2 class="section-title">Почему выбирают нас</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-medal"></i>
+                            <h3>Гарантия качества</h3>
+                            <p>Все материалы от проверенных производителей с сертификатами качества</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-user-hard-hat"></i>
+                            <h3>Опытные специалисты</h3>
+                            <p>Профессиональные строители с многолетним опытом работы</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция о нас -->
+            <section class="about">
+                <div class="container">
+                    <div class="about-content">
+                        <div class="about-text">
+                            <h2>О компании Дюков-Цемент</h2>
+                            <p>Мы предлагаем полный спектр услуг: от поставки качественных строительных материалов до выполнения строительных работ под ключ.</p>
+                            <p>Наш принцип - индивидуальный подход к каждому клиенту и высокое качество выполнения работ.</p>
+                            <a href="#" class="btn" data-page="contacts">Связаться с нами</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Контактная информация -->
+            <section class="contacts-section">
+                <div class="container">
+                    <h2 class="section-title">Контакты</h2>
+                    <div class="contacts-content">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-location-dot"></i>
+                                <div class="contact-text">
+                                    <h4>Дюков-Цемент - центральный склад</h4>
+                                    <p>г. Курск, ул. Гремяченская 10</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <div class="contact-text">
+                                    <h4>Телефон</h4>
+                                    <p>8 (951) 314-15-74</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <div class="contact-text">
+                                    <h4>Email</h4>
+                                    <p>Eko-makx@yandex.ru</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Страница стройматериалов -->
+        <section class="page-section" id="materials-page">
+            <!-- Герой-секция -->
+            <section class="hero-section hero-materials">
+                <div class="container">
+                    <h1>Строительные материалы</h1>
+                    <p>Широкий ассортимент качественных строительных материалов от проверенных производителей</p>
+                    <a href="#" class="btn" data-page="main">На главную</a>
+                    <a href="#" class="btn btn-secondary" data-page="works">Строительные работы</a>
+                </div>
+            </section>
+
+            <!-- Секция товаров -->
+            <section class="products-section">
+                <div class="container">
+                    <h2 class="section-title">Каталог материалов</h2>
+                    <div class="products-grid">
+                        <!-- Карточка товара 1 -->
+                        <div class="product-card">
+                            <img src="https://avatars.mds.yandex.net/i?id=95b7ffb0bb1bcc5436ed5bb77afebc053135ecef-5221486-images-thumbs&n=13">
+                            <div class="product-content">
+                                <h3 class="product-title">Цемент</h3>
+                                <p class="product-description">Высококачественный цемент для строительных работ</p>
+                            </div>
+                        </div>
+
+                        <!-- Карточка товара 2 -->
+                        <div class="product-card">
+                            <img src="https://avatars.mds.yandex.net/i?id=68094f143145c4107cfafdf79bacea83a4ea3b6b-10250346-images-thumbs&n=13">
+                            <div class="product-content">
+                                <h3 class="product-title">Кирпич строительный</h3>
+                                <p class="product-description">Кирпич для возведения стен и перегородок</p>
+                            </div>
+                        </div>
+
+                        <!-- Карточка товара 3 -->
+                        <div class="product-card">
+                            <img src="https://avatars.mds.yandex.net/i?id=0b89bff6ada415357427d85640e87c3b1c2db9e0-9147982-images-thumbs&n=13">
+                            <div class="product-content">
+                                <h3 class="product-title">Пеноблок</h3>
+                                <p class="product-description">Легкий и теплый материал для строительства</p>
+                            </div>
+                        </div>
+
+                        <!-- Карточка товара 4 -->
+                        <div class="product-card">
+                            <img src="https://avatars.mds.yandex.net/i?id=3d67b4ac68ffd3d3899bcff4dc25ab4cd3daa795-4580567-images-thumbs&n=13">
+                            <div class="product-content">
+                                <h3 class="product-title">Профильная труба</h3>
+                                <p class="product-description">Металлические профильные трубы различных размеров</p>
+                            </div>
+                        </div>
+
+                        <!-- Карточка товара 5 -->
+                        <div class="product-card">
+                            <img src="https://avatars.mds.yandex.net/i?id=a97ee388d749cb6c30f39ede9cf08d33efd4c4f9-13013551-images-thumbs&n=13">
+                            <div class="product-content">
+                                <h3 class="product-title">Стальная арматура</h3>
+                                <p class="product-description">Арматура для армирования бетонных конструкций</p>
+                            </div>
+                        </div>
+
+                        <!-- Карточка товара 6 -->
+                        <div class="product-card">
+                            <img src="https://avatars.mds.yandex.net/i?id=a4b977ebdd32d49f741c4fdced9bd7d37fa74105-4768242-images-thumbs&n=13">
+                            <div class="product-content">
+                                <h3 class="product-title">Металлический уголок</h3>
+                                <p class="product-description">Уголок для монтажа металлоконструкций</p>
+                            </div>
+                        </div>
+
+                        <!-- Карточка товара 7 -->
+                        <div class="product-card">
+                            <img src="https://avatars.mds.yandex.net/i?id=6687bbfaa7a6176f04e9eb5ee1113c44e6286d74-16336826-images-thumbs&n=13">
+                            <div class="product-content">
+                                <h3 class="product-title">Шифер</h3>
+                                <p class="product-description">Волновой шифер для кровельных работ</p>
+                            </div>
+                        </div>
+
+                        <!-- Карточка товара 8 -->
+                        <div class="product-card">
+                            <img src="https://avatars.mds.yandex.net/i?id=e3d0e0c955f675a9446845ecdc9461698c578c67-5274458-images-thumbs&n=13">
+                            <div class="product-content">
+                                <h3 class="product-title">Бетонные кольца</h3>
+                                <p class="product-description">Кольца для колодцев и септиков</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Контактная информация -->
+            <section class="contacts-section">
+                <div class="container">
+                    <h2 class="section-title">Заказать материалы</h2>
+                    <p style="text-align: center; margin-bottom: 40px; color: var(--dark-gray); font-size: 18px;">
+                        Для заказа материалов или получения консультации свяжитесь с нами:
+                    </p>
+                    <div class="contacts-content">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-location-dot"></i>
+                                <div class="contact-text">
+                                    <h4>Дюков-Цемент - центральный склад</h4>
+                                    <p>г. Курск, ул. Гремяченская 10</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <div class="contact-text">
+                                    <h4>Телефон для заказов</h4>
+                                    <p>8 (951) 314-15-74</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <div class="contact-text">
+                                    <h4>Email</h4>
+                                    <p>Eko-makx@yandex.ru</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+ <!-- Страница строительных работ -->
+        <section class="page-section" id="works-page">
+            <!-- Герой-секция -->
+            <section class="hero-section hero-works">
+                <div class="container">
+                    <h1>Строительные работы</h1>
+                    <p>Профессиональное выполнение строительных работ любой сложности под ключ</p>
+                    <a href="#" class="btn" data-page="main">На главную</a>
+                    <a href="#" class="btn btn-secondary" data-page="materials">Стройматериалы</a>
+                </div>
+            </section>
+
+            <!-- Секция работ -->
+            <section class="works-section">
+                <div class="container">
+                    <h2 class="section-title">Наши услуги</h2>
+                    <div class="works-grid">
+                        <!-- Карточка работы 1 -->
+                        <div class="work-card">
+                            <div class="work-content">
+                                <h3 class="work-title">Строительство частных домов</h3>
+                                <p class="work-description">Возведение загородных домов, коттеджей и дачных построек под ключ. От фундамента до внутренней отделки.</p>
+                                <ul class="work-features">
+                                    <li><i class="fas fa-check"></i> Индивидуальное проектирование</li>
+                                    <li><i class="fas fa-check"></i> Строительство под ключ</li>
+                                    <li><i class="fas fa-check"></i> Гарантия на работы</li>
+                                    <li><i class="fas fa-check"></i> Соблюдение сроков</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Карточка работы 2 -->
+                        <div class="work-card">
+                            <div class="work-content">
+                                <h3 class="work-title">Монтаж металлоконструкций</h3>
+                                <p class="work-description">Профессиональный монтаж металлических конструкций, каркасов, ферм и других металлических элементов.</p>
+                                <ul class="work-features">
+                                    <li><i class="fas fa-check"></i> Проектирование конструкций</li>
+                                    <li><i class="fas fa-check"></i> Изготовление на заводе</li>
+                                    <li><i class="fas fa-check"></i> Монтаж на объекте</li>
+                                    <li><i class="fas fa-check"></i> Антикоррозийная обработка</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Карточка работы 3 -->
+                        <div class="work-card">
+                            <div class="work-content">
+                                <h3 class="work-title">Кровельные работы</h3>
+                                <p class="work-description">Монтаж и ремонт кровли различных типов: шифер, профнастил, металлочерепица, мягкая кровля.</p>
+                                <ul class="work-features">
+                                    <li><i class="fas fa-check"></i> Демонтаж старой кровли</li>
+                                    <li><i class="fas fa-check"></i> Утепление и гидроизоляция</li>
+                                    <li><i class="fas fa-check"></i> Монтаж новой кровли</li>
+                                    <li><i class="fas fa-check"></i> Установка водостоков</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Карточка работы 4 -->
+                        <div class="work-card">
+                            <div class="work-content">
+                                <h3 class="work-title">Фундаментные работы</h3>
+                                <p class="work-description">Устройство фундаментов различных типов: ленточных, плитных, свайных. Качественно и надежно.</p>
+                                <ul class="work-features">
+                                    <li><i class="fas fa-check"></i> Геологические изыскания</li>
+                                    <li><i class="fas fa-check"></i> Земляные работы</li>
+                                    <li><i class="fas fa-check"></i> Устройство опалубки</li>
+                                    <li><i class="fas fa-check"></i> Бетонирование</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Карточка работы 5 -->
+                        <div class="work-card">
+                            <div class="work-content">
+                                <h3 class="work-title">Отделочные работы</h3>
+                                <p class="work-description">Внутренняя и внешняя отделка зданий: штукатурка, покраска, облицовка, монтаж фасадов.</p>
+                                <ul class="work-features">
+                                    <li><i class="fas fa-check"></i> Подготовка поверхностей</li>
+                                    <li><i class="fas fa-check"></i> Штукатурные работы</li>
+                                    <li><i class="fas fa-check"></i> Малярные работы</li>
+                                    <li><i class="fas fa-check"></i> Облицовка плиткой</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Карточка работы 6 -->
+                        <div class="work-card">
+                            <div class="work-content">
+                                <h3 class="work-title">Строительство гаражей и хозпостроек</h3>
+                                <p class="work-description">Возведение гаражей, сараев, бань, беседок и других хозяйственных построек.</p>
+                                <ul class="work-features">
+                                    <li><i class="fas fa-check"></i> Проектирование построек</li>
+                                    <li><i class="fas fa-check"></i> Строительство фундамента</li>
+                                    <li><i class="fas fa-check"></i> Возведение стен и крыши</li>
+                                    <li><i class="fas fa-check"></i> Внутренняя отделка</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция процесса работы -->
+            <section class="process-section">
+                <div class="container">
+                    <h2 class="section-title">Как мы работаем</h2>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <h3>Консультация</h3>
+                            <p>Бесплатная консультация и выезд на объект для оценки объема работ</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <h3>Смета и договор</h3>
+                            <p>Составление детальной сметы и заключение договора с фиксированной ценой</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <h3>Выполнение работ</h3>
+                            <p>Профессиональное выполнение работ с соблюдением сроков и технологии</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <h3>Сдача объекта</h3>
+                            <p>Сдача готового объекта и предоставление гарантии на выполненные работы</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Контактная информация -->
+            <section class="contacts-section">
+                <div class="container">
+                    <h2 class="section-title">Обсудить проект</h2>
+                    <p style="text-align: center; margin-bottom: 40px; color: var(--dark-gray); font-size: 18px;">
+                        Для консультации по строительным работам или составления сметы свяжитесь с нами:
+                    </p>
+                    <div class="contacts-content">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-location-dot"></i>
+                                <div class="contact-text">
+                                    <h4>Офис Дюков-Цемент</h4>
+                                    <p>г. Курск, ул. Гремяченская 10</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <div class="contact-text">
+                                    <h4>Телефон для консультаций</h4>
+                                    <p>8 (951) 314-15-74</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <div class="contact-text">
+                                    <h4>Email для заявок</h4>
+                                    <p>Eko-makx@yandex.ru</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Страница контактов -->
+        <section class="page-section" id="contacts-page">
+            <!-- Герой-секция (используем ту же, что и на главной) -->
+            <section class="hero-section hero-main">
+                <div class="container">
+                    <h1>Контакты</h1>
+                    <p>Свяжитесь с нами для получения консультации или оформления заказа</p>
+                    <a href="#" class="btn" data-page="main">На главную</a>
+                </div>
+            </section>
+
+            <!-- Контактная информация -->
+            <section class="contacts-section">
+                <div class="container">
+                    <h2 class="section-title">Наши контакты</h2>
+                    <div class="contacts-content">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-location-dot"></i>
+                                <div class="contact-text">
+                                    <h4>Дюков-Цемент</h4>
+                                    <p>г. Курск, ул. Гремяченская 10</p>
+                                    <p><small>Центральный офис и склад</small></p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <div class="contact-text">
+                                    <h4>Телефоны</h4>
+                                    <p>8 (951) 314-15-74
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <div class="contact-text">
+                                    <h4>Email</h4>
+                                    <p>Eko-makx@yandex.ru</p>
+                                    <p><small>Для заказов и консультаций</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Дюков-Цемент</h3>
+                    <p>Мы предлагаем широкий ассортимент строительных материалов и строительных работ.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Наши страницы</h3>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="main">Главная</a></li>
+                        <li><a href="#" class="nav-link" data-page="materials">Стройматериалы</a></li>
+                        <li><a href="#" class="nav-link" data-page="works">Строительные работы</a></li>
+                        <li><a href="#" class="nav-link" data-page="contacts">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 8 (951) 314-15-74</li>
+                        <li><i class="fas fa-envelope"></i> Eko-makx@yandex.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> г. Курск, ул. Гремяченская 10</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Дюков-Цемент. Сайт носит сугубо информационный характер и не является публичной офертой, определяемой Статьей 437 (2)ГК РФ.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav ul');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Навигация между страницами
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pageSections = document.querySelectorAll('.page-section');
+        const allButtons = document.querySelectorAll('[data-page]');
+        
+        // Функция для переключения страниц
+        function switchPage(pageId) {
+            // Скрыть все страницы
+            pageSections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Показать выбранную страницу
+            const targetSection = document.getElementById(`${pageId}-page`);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                
+                // Прокрутить к верху страницы
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+            
+            // Обновить активную ссылку в меню
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-page') === pageId) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Закрыть мобильное меню на маленьких экранах
+            if (window.innerWidth <= 768) {
+                nav.style.display = 'none';
+            }
+        }
+        
+        // Обработчики для навигационных ссылок
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('data-page');
+                switchPage(pageId);
+            });
+        });
+        
+        // Обработчики для всех кнопок с data-page
+        allButtons.forEach(button => {
+            if (!button.classList.contains('nav-link')) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    switchPage(pageId);
+                });
+            }
+        });
+        
+        // Обработчик для кнопки "Заказать" в карточках товаров
+        document.querySelectorAll('.btn-order').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                switchPage('contacts');
+                
+                // Добавляем текст в форму
+                const productTitle = this.closest('.product-content').querySelector('.product-title').textContent;
+                document.getElementById('message').value = `Хочу заказать: ${productTitle}\n\n`;
+                document.getElementById('message').focus();
+            });
+        });
+        
+        // Обработчик для кнопки "Обсудить проект"
+        document.querySelectorAll('.btn-discuss').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                switchPage('contacts');
+                
+                // Добавляем текст в форму
+                const workTitle = this.closest('.work-content').querySelector('.work-title').textContent;
+                document.getElementById('message').value = `Интересует услуга: ${workTitle}\n\n`;
+                document.getElementById('message').focus();
+            });
+        });
+        
+        // Обработчик формы обратной связи
+        document.getElementById('submit-btn').addEventListener('click', function() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !phone) {
+                alert('Пожалуйста, заполните обязательные поля: Имя и Телефон');
+                return;
+            }
+            
+            // Имитация отправки формы
+            alert(`Спасибо, ${name}! Ваша заявка принята.\nМы свяжемся с вами по телефону ${phone} в ближайшее время.`);
+            
+            // Очистка формы
+            document.getElementById('name').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('message').value = '';
+        });
+        
+        // Адаптивность меню
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                nav.style.display = 'flex';
+            } else {
+                nav.style.display = 'none';
+            }
+        });
+        
+        // Инициализация меню на мобильных устройствах
+        if (window.innerWidth <= 768) {
+            nav.style.display = 'none';
+        }
+        
+        // Показываем главную страницу при загрузке
+        switchPage('main');
+    </script>
+</body>
+</html>
